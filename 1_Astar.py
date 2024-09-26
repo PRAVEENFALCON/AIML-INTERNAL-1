@@ -37,17 +37,17 @@ def a_star_search(start, goal):
     return None, float('inf')
 
 nodes = {}
-num_nodes = int(input("Enter the number of nodes: "))
-for _ in range(num_nodes):
-    name = input("Enter node name: ")
-    heuristic = float(input(f"Enter heuristic value for {name}: "))
+node_data = input("Enter nodes with their heuristic values (e.g., 'A 1 B 2 C 3'): ").split()
+for i in range(0, len(node_data), 2):
+    name = node_data[i]
+    heuristic = float(node_data[i+1])
     nodes[name] = Node(name, heuristic)
 
-num_edges = int(input("Enter the number of edges: "))
-for _ in range(num_edges):
-    node1 = input("Enter the start node of the edge: ")
-    node2 = input("Enter the end node of the edge: ")
-    weight = float(input(f"Enter the weight of the edge between {node1} and {node2}: "))
+edge_data = input("Enter edges with weights (e.g., 'A B 1 B C 2'): ").split()
+for i in range(0, len(edge_data), 3):
+    node1 = edge_data[i]
+    node2 = edge_data[i+1]
+    weight = float(edge_data[i+2])
     nodes[node1].add_neighbor(nodes[node2], weight)
     nodes[node2].add_neighbor(nodes[node1], weight)
 
